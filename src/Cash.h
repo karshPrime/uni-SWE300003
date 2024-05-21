@@ -2,9 +2,11 @@
 #include <iostream>
 #include "PaymentMethod.h"
 
-class Cash : public PaymentMethod {
+class Cash : public PaymentMethod 
+{
 public:
-    void pay(double amount) override {
+    void pay(double amount) override 
+	{
         std::cout << "Cash Payment: $" << amount << std::endl;
     }
 };
