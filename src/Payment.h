@@ -1,6 +1,7 @@
 #include "PaymentMethod.h"
 
-class Payment {
+class Payment 
+{
 private:
     PaymentMethod* paymentMethod;
 
@@ -12,7 +13,8 @@ public:
     }
     void make_Payment(double amount)
     {
-        if (paymentMethod) {
+        if (paymentMethod) 
+        {
             paymentMethod->pay(amount);
         }
     }
