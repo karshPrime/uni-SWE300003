@@ -1,88 +1,30 @@
+// Main.cpp
 
-#include "Prompts.h"
 #include "Customer.h"
 #include "Employee.h"
 
+void customer_test();
+void employee_test();
+
 int main()
 {
-    char buffer = '\n';         // input buffer
-    char userOptions[4] = {0};  // initialise with zero
+    customer_test();
+    employee_test();
+}
 
-    void(*menu)() = home_menu;  // default menu
+void customer_test() {
+    Customer customer = Customer();
 
-    while (buffer != 'x') {
-        std::cout << std::endl;
-        menu();
-        std::cout << "[?] for help $ ";
-        std::cin >> buffer;
+    customer.AddPayment();
+    customer.MakePayment();
 
-        if (buffer == 'h') {
-            menu = home_menu;
-            std::strcpy_s(userOptions, "h");
-            continue;
-        }
+    customer.MakeReservation(10, "27/12/2024");
+    customer.EditReservation();
+    customer.CancelReservation();
+}
 
-        // employee
-        if (userOptions[0] == '1') {
-            // Placeholder for employee menu handling logic
-            // Employee employee;
-        }
-
-        // customer
-        else if (userOptions[0] == '2') {
-            Customer customer;
-
-            // new user
-            if (userOptions[1] == '1') {
-                customer = Customer();
-                menu = customer_loggedIn;
-            }
-
-            // to modify existing request
-            else if (userOptions[1] == '2') {
-                std::string lInputBuffer;
-                size_t lID = -1;
-
-                while (lInputBuffer != "x") {
-                    std::cout << "Enter your ID : ";
-                    std::cin >> lInputBuffer;
-                    try {
-                        lID = std::stoull(lInputBuffer);
-                        buffer = 'x';
-                        break;
-                    } 
-                    catch (...) {
-                        std::cout << "Invalid ID. Try again\n";
-                    }
-                }
-
-                // now look for user with this ID
-                customer = Customer(lID); 
-                menu = customer_loggedIn;
-            }
-
-            else {
-                userOptions[1] = buffer; // Store buffer in userOptions[1]
-            }
-        }
-
-        else {
-            userOptions[0] = buffer; // Store buffer in userOptions[0]
-
-            if (buffer == '1')
-                menu = customer_menu; // Switch to customer menu
-
-            else if (buffer == '2')
-                menu = employee_menu; // Switch to employee menu
-
-            else if (buffer == 'x')
-                std::cout << "goodbye\n"; // Exit message
-
-            else
-                std::cout << "invalid input\n"; // Invalid input message
-        }
-    }
-
-    return 0;
+void employee_test() {
+    Employee employee = Employee(101);
+    // other tests
 }
 

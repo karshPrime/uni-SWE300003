@@ -28,7 +28,7 @@ public:
     void AddPayment() noexcept;
     void MakePayment() noexcept;
 
-    void MakeReservation() noexcept;
+    void MakeReservation(size_t aSize, std::string date) noexcept;
     void EditReservation() noexcept;
     void CancelReservation() noexcept;
 };

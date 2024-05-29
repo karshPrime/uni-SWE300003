@@ -15,7 +15,7 @@ protected:
     Table FindFreeTable(size_t aSeats) noexcept;
 
 public:
-    virtual void MakeReservation() noexcept;
+    virtual void MakeReservation(size_t aSize, std::string date) noexcept;
     virtual void EditReservation() noexcept;
     virtual void CancelReservation() noexcept;
 };

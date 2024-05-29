@@ -21,7 +21,7 @@ public:
     size_t ID() const noexcept { return fID; };
     JobRole Role() const noexcept { return fRole; };
 
-    void MakeReservation() noexcept;
+    void MakeReservation(size_t aSize, std::string date) noexcept;
     void EditReservation() noexcept;
     void CancelReservation() noexcept;
 

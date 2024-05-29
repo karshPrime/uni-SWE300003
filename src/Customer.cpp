@@ -24,7 +24,7 @@ void Customer::AddPayment() noexcept
 void Customer::MakePayment() noexcept
 {}
 
-void Customer::MakeReservation() noexcept
+void MakeReservation(size_t aSize, std::string date) noexcept
 {}
 
 void Customer::CancelReservation() noexcept

@@ -2,7 +2,7 @@
 
 #include "Employee.h"
 
-void Employee::MakeReservation() noexcept
+void MakeReservation(size_t aSize, std::string date) noexcept
 {
     //
 }
