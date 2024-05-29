@@ -33,7 +33,7 @@ public:
             int tableNumber, tableSize;
 
             while (file >> serial >> date >> time >> customerName >> tableNumber >> tableSize) {
-                Customer* customer = new Customer();  // Placeholder for actual Customer object creation
+                Customer* customer = new Customer(customerName);
                 Table* table = new Table(tableNumber, tableSize);
                 reservations.emplace_back(serial, date, time, customer, table);
             }
