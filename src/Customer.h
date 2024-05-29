@@ -1,6 +1,6 @@
 // Customer.h
 
-#include <cstddef>
+#pragma once
 
 #include "Users.h"
 #include "Payment.h"
@@ -13,7 +13,6 @@ private:
     size_t fPhone;
     std::string fName;
     std::string fEmail;
-    void generate_id();
 
 public:
     Customer() noexcept;            // new account

@@ -1,3 +1,7 @@
+// Payment.h
+
+#pragma once
+
 #include "PaymentMethod.h"
 
 class Payment {
@@ -10,6 +14,7 @@ public:
     {
         paymentMethod = method;
     }
+
     void make_Payment(double amount)
     {
         if (paymentMethod) {
@@ -17,3 +22,4 @@ public:
         }
     }
 };
+

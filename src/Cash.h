@@ -1,4 +1,7 @@
+// Cash.h
+
 #pragma once
+
 #include <iostream>
 #include "PaymentMethod.h"
 
@@ -8,3 +11,4 @@ public:
         std::cout << "Cash Payment: $" << amount << std::endl;
     }
 };
+
