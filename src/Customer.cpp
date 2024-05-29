@@ -3,6 +3,7 @@
 #include "Customer.h"
 
 Customer::Customer() noexcept {
+    std::cout << "Create New Account\n";
     std::string fName = input<std::string>("Name");
     size_t fSeats = input<size_t>("Seats");
     size_t fPhone = input<size_t>("Phone");

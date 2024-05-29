@@ -13,6 +13,7 @@ private:
     size_t fPhone;
     std::string fName;
     std::string fEmail;
+    Record fRecord;
 
 public:
     Customer() noexcept;            // new account

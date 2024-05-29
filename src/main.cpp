@@ -3,11 +3,6 @@
 #include "Customer.h"
 #include "Employee.h"
 
-void home_menu();
-void customer_menu();
-void employee_menu();
-void customer_loggedIn();
-
 int main()
 {
     char buffer = '\n';         // input buffer
@@ -23,13 +18,14 @@ int main()
 
         if (buffer == 'h') {
             menu = home_menu;
-            std::strcpy(userOptions, "h");
+            std::strcpy_s(userOptions, "h");
             continue;
         }
 
         // employee
         if (userOptions[0] == '1') {
             // Placeholder for employee menu handling logic
+            // Employee employee;
         }
 
         // customer

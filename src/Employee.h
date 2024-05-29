@@ -16,7 +16,7 @@ private:
     JobRole fRole;
 
 public:
-    Employee(int id, char* name);
+    Employee(int aID) noexcept;
 
     size_t ID() const noexcept { return fID; };
     JobRole Role() const noexcept { return fRole; };
