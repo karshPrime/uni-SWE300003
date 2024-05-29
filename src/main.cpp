@@ -18,26 +18,42 @@ int main() {
     Cash cash;
     OnlinePayment online;
 
-    Payment payment(&card);
-    payment.make_Payment(100.0);
 
-    payment.setPaymentMethod(&cash);
-    payment.make_Payment(200.0);
 
-    payment.setPaymentMethod(&online);
-    payment.make_Payment(300.0);
+    User* employeeUser = CreateUserFactory::createUser(EMPLOYEE);
+    Employee* employee = static_cast<Employee*>(employeeUser);
 
-    User* employee = CreateUserFactory::createUser(EMPLOYEE);
-    User* customer = CreateUserFactory::createUser(CUSTOMER);
-    User* kitchen = CreateUserFactory::createUser(KITCHEN);
+    User* kitchenUser = CreateUserFactory::createUser(KITCHEN);
+    Kitchen* kitchen = static_cast<Kitchen*>(kitchenUser);
+
+    User* customerUser1 = CreateUserFactory::createUser(CUSTOMER);
+    Customer* customer1 = static_cast<Customer*>(customerUser1);
+
+    User* customerUser2 = CreateUserFactory::createUser(CUSTOMER);
+    Customer* customer2 = static_cast<Customer*>(customerUser2);
+    
+
+
+    Payment payment1(&card, customer1);
+    payment1.make_Payment(100.0);
+
+
+    Payment payment2(&online, customer2);
+    payment2.make_Payment(200.0);
+
+
+    payment1.setPaymentMethod(&cash);
+    payment1.make_Payment(200.0);
 
     employee->displayRole();
-    customer->displayRole();
     kitchen->displayRole();
+    customer1->displayRole();
 
-    Customer* cust = static_cast<Customer*>(customer);
+
+
+
     Table table1(1, 4);
-    Reservation reservation("R001", "2023-05-29", "19:00", cust, &table1);
+    Reservation reservation("R001", "2023-05-29", "19:00", customer1, &table1);
 
     MenuItem item1("Pizza", 15.99);
     MenuItem item2("Burger", 9.99);
@@ -52,7 +68,7 @@ int main() {
     std::vector<Order*> orders = db.getReceipts();
     Report::generateSalesReport(orders);
 
-    std::vector<Customer*> customers = {cust};
+    std::vector<Customer*> customers = {customer1};
     Report::generateCustomerActivityReport(customers);
 
     return 0;
