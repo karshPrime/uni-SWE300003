@@ -1,7 +1,8 @@
-
 #pragma once
 
 #include <string>
+#include <vector>
+#include <fstream>
 #include "Customer.h"
 #include "Table.h"
 
@@ -23,12 +24,45 @@ public:
     Customer* getCustomer() const { return customer; }
     Table* getTable() const { return table; }
 
-    void update(const std::string& newDate, const std::string& newTime) {
-        date = newDate;
-        time = newTime;
+    static std::vector<Reservation> loadReservations() {
+        std::vector<Reservation> reservations;
+        std::ifstream file("reservations.txt");
+
+        if (file.is_open()) {
+            std::string serial, date, time, customerName;
+            int tableNumber, tableSize;
+
+            while (file >> serial >> date >> time >> customerName >> tableNumber >> tableSize) {
+                Customer* customer = new Customer();  // Placeholder for actual Customer object creation
+                Table* table = new Table(tableNumber, tableSize);
+                reservations.emplace_back(serial, date, time, customer, table);
+            }
+            file.close();
+        }
+
+        return reservations;
     }
 
-    void cancel() {
-        // Implement cancellation logic
+    static void saveReservation(const Reservation& reservation) {
+        std::ofstream file("reservations.txt", std::ios::app);
+        if (file.is_open()) {
+            file << reservation.serialNumber << " "
+                 << reservation.date << " "
+                 << reservation.time << " "
+                 << reservation.customer->getName() << " "
+                 << reservation.table->getTableNumber() << " "
+                 << reservation.table->getSize() << std::endl;
+            file.close();
+        }
+    }
+
+    static bool isConflicting(const Reservation& newReservation, const std::vector<Reservation>& reservations) {
+        for (const auto& reservation : reservations) {
+            if (reservation.getDate() == newReservation.getDate() && 
+                reservation.getTime() == newReservation.getTime()) {
+                return true;
+            }
+        }
+        return false;
     }
 };

@@ -15,7 +15,7 @@ enum UserType
 class CreateUserFactory 
 {
 public:
-    static User* createUser(UserType type) 
+    static User* createUser(UserType type, const std::string& name = "") 
     {
         if (type == UserType::EMPLOYEE) 
         {
@@ -23,7 +23,7 @@ public:
         }
         else if (type == UserType::CUSTOMER) 
         {
-            return new Customer();
+            return new Customer(name);
         }
         else if (type == UserType::KITCHEN) 
         {
