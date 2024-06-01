@@ -1,6 +1,6 @@
 # Compiler and flags
 CXX = g++
-CXXFLAGS = -std=c++11 -Wall
+CXXFLAGS = -std=c++20 -Wall
 
 # Directories
 SRC_DIR = src
@@ -34,15 +34,16 @@ debug: $(TARGET)
 # Debug Compilation
 debug_compile:
 	@mkdir -p $(OBJ_DIR)
-	$(CC) $(CFLAGS) -o $(TARGET) $(SRCS) -g
+	$(CXX) $(CXXFLAGS) -o $(TARGET) $(SRCS) -g
 
-run:
-    ./bin
+# Run the program (compile if necessary)
+run: all
+	@echo "Running the program..."
+	@./bin
 
 # Clean
 clean:
-	rm -rf $(OBJ_DIR)/* ./bin
+	rm -rf $(OBJ_DIR)/* $(TARGET)
 
 # Phony targets
-.PHONY: all clean debug debug_compile
-
+.PHONY: all clean debug debug_compile run
